@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dang Van Cong Hoang — Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #f6f3ed;
+            --accent: #8b4513;
+            --accent-light: #c4956a;
+            --muted: #7a7568;
+            --rule: #d4cfc4;
+            --highlight: #fffbe6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Sans 3', Georgia, serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 4rem;
+            animation: fadeDown 0.8s ease;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        nav .logo span { color: var(--accent); }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        nav a:hover { color: var(--ink); }
+        nav a:hover::after { width: 100%; }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 2rem 0 5rem;
+            animation: fadeUp 1s ease 0.2s both;
+        }
+        .hero-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .hero-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        .hero-bio {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 520px;
+            line-height: 1.8;
+        }
+        .hero-bio strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .hero-links {
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .hero-links a {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 0.7rem 1.6rem;
+            border: 1px solid var(--ink);
+            transition: all 0.3s ease;
+        }
+        .hero-links a:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+        .hero-links a.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .hero-links a.primary:hover {
+            background: #6e3610;
+            border-color: #6e3610;
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 4rem 0;
+            border-top: 1px solid var(--rule);
+        }
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+
+        /* ─── RESEARCH INTERESTS ─── */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .interest-item {
+            padding: 1.8rem;
+            background: rgba(255,255,255,0.5);
+            border-left: 2px solid var(--rule);
+            transition: all 0.4s ease;
+        }
+        .interest-item:hover {
+            border-left-color: var(--accent);
+            background: rgba(255,255,255,0.8);
+            transform: translateX(4px);
+        }
+        .interest-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+        }
+        .interest-item p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ─── PUBLICATIONS ─── */
+        .pub-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--rule);
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            align-items: start;
+            transition: background 0.3s;
+        }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-item:hover { background: rgba(255,255,255,0.3); }
+        .pub-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--accent);
+            padding-top: 0.3rem;
+        }
+        .pub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+        .pub-venue {
+            font-size: 0.88rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+        .pub-authors {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .pub-authors .me { color: var(--ink); font-weight: 600; }
+        .pub-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.6rem;
+            background: var(--accent);
+            color: #fff;
+            margin-top: 0.5rem;
+            border-radius: 2px;
+        }
+
+        /* ─── TEACHING ─── */
+        .teaching-list { list-style: none; }
+        .teaching-list li {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 2rem;
+        }
+        .teaching-list li:last-child { border-bottom: none; }
+        .course-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+        }
+        .course-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        /* ─── CV ─── */
+        .cv-timeline { position: relative; padding-left: 2rem; }
+        .cv-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--rule);
+        }
+        .cv-entry {
+            padding: 1.5rem 0;
+            position: relative;
+        }
+        .cv-entry::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 2rem;
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translateX(-3px);
+        }
+        .cv-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        .cv-role {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        .cv-place {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* ─── CONTACT ─── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .contact-info p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        .contact-detail {
+            margin-bottom: 1rem;
+        }
+        .contact-detail .label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        .contact-detail a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--rule);
+            transition: border-color 0.3s;
+        }
+        .contact-detail a:hover { border-color: var(--accent); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--rule);
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            .interests-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .pub-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .teaching-list li { flex-direction: column; gap: 0.3rem; }
+            nav ul { gap: 1rem; }
+            nav a { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <!-- <div class="logo">Dr. <span>Nguyễn</span></div> -->
+        <div class="logo"><span>Dang Van Cong Hoang</span></div>
+        <ul>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <div class="hero-label">Independent Researcher</div>
+        <!-- <div class="hero-label">Researcher · University of ABC</div> -->
+        <h1>Research about Causal Inference</em></h1>
+        <!-- <p class="hero-bio">
+            I am a Ph.D. candidate at the <strong>XYZ Laboratory</strong>, 
+            University of ABC. My research focuses on understanding how large language models 
+            process and represent information, drawing inspiration from human cognitive science.
+        </p> -->
+        <div class="hero-links">
+            <a href="#publications" class="primary">Publications</a>
+            <a href="mailto:nguyen@university.edu">Email</a>
+            <a href="#">Google Scholar</a>
+        </div>
+    </div>
+</header>
+
+<section id="research" class="fade-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Research Interests</h2>
+        </div>
+        <div class="interests-grid">
+            <div class="interest-item">
+                <h3>Causal Inference</h3>
+                <p>Developing and applying causal inference methods to understand relationships in complex data.</p>
+            </div>
+            <!-- <div class="interest-item">
+                <h3>Causal Discovery</h3>
+                <p>Modeling human cognitive processes using computational methods and comparing them with AI systems.</p>
+            </div> -->
+            <!-- <div class="interest-item">
+                <h3>Representation Learning</h3>
+                <p>Investigating how to extract and learn meaningful representations from unstructured data.</p>
+            </div>
+            <div class="interest-item">
+                <h3>Explainable AI</h3>
+                <p>Developing methods to understand and interpret the decisions made by deep learning models.</p>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+<section id="publications" class="fade-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Selected Publications</h2>
+        </div>
+        <!-- <div class="pub-item">
+            <div class="pub-year">2025</div>
+            <div>
+                <div class="pub-title">Towards Cognitively-Inspired Representations in Large Language Models</div>
+                <div class="pub-venue">Annual Meeting of the Association for Computational Linguistics (ACL)</div>
+                <div class="pub-authors"><span class="me">Nguyễn V.A.</span>, Smith J., Park S., & Lee K.</div>
+                <span class="pub-tag">Oral</span>
+            </div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-year">2024</div>
+            <div>
+                <div class="pub-title">Bridging Neural and Symbolic Reasoning: A Hybrid Approach</div>
+                <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS)</div>
+                <div class="pub-authors"><span class="me">Nguyễn V.A.</span> & Johnson R.</div>
+            </div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-year">2024</div>
+            <div>
+                <div class="pub-title">Interpretable Attention Patterns in Multilingual Transformers</div>
+                <div class="pub-venue">Empirical Methods in Natural Language Processing (EMNLP)</div>
+                <div class="pub-authors">Park S., <span class="me">Nguyễn V.A.</span>, & Chen W.</div>
+            </div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-year">2023</div>
+            <div>
+                <div class="pub-title">On the Alignment of Human and Machine Representations of Language</div>
+                <div class="pub-venue">International Conference on Learning Representations (ICLR)</div>
+                <div class="pub-authors"><span class="me">Nguyễn V.A.</span>, Kim D., & Smith J.</div>
+                <span class="pub-tag">Spotlight</span>
+            </div>
+        </div> -->
+    </div>
+</section>
+
+<section id="teaching" class="fade-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Teaching</h2>
+        </div>
+        <!-- <ul class="teaching-list">
+            <li>
+                <span class="course-name">Introduction to Machine Learning</span>
+                <span class="course-meta">Teaching Assistant · 2024–2025</span>
+            </li>
+            <li>
+                <span class="course-name">Advanced Natural Language Processing</span>
+                <span class="course-meta">Teaching Assistant · 2024</span>
+            </li>
+            <li>
+                <span class="course-name">Computational Cognitive Science</span>
+                <span class="course-meta">Teaching Assistant · 2023</span>
+            </li>
+        </ul> -->
+    </div>
+</section>
+
+<section id="cv" class="fade-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Education</h2>
+        </div>
+        <div class="cv-timeline">
+            <div class="cv-entry">
+                <div class="cv-period">2017 — 2023</div>
+                <div class="cv-role">Bachelor of Engineering in Information Systems</div>
+                <div class="cv-place">University of Information Technology, Vietnam National University Ho Chi Minh City</div>
+            </div>
+            <!-- <div class="cv-entry">
+                <div class="cv-period">2020 — 2022</div>
+                <div class="cv-role">M.Sc. — Artificial Intelligence</div>
+                <div class="cv-place">University of DEF</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-period">2016 — 2020</div>
+                <div class="cv-role">B.Sc. — Computer Science</div>
+                <div class="cv-place">University of GHI</div>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="fade-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Contact</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <p>I am always open to discussing research, academic collaborations, or mentoring opportunities. Feel free to reach out.</p>
+            </div>
+            <div>
+                <div class="contact-detail">
+                    <div class="label">Email</div>
+                    <a href="mailto:17520503@gm.uit.edu.vn">17520503@gm.uit.edu.vn</a>
+                </div>
+                <!-- <div class="contact-detail">
+                    <div class="label">Office</div>
+                    <span>Room 404, Computer Science Building<br>University of ABC</span>
+                </div> -->
+                <!-- <div class="contact-detail">
+                    <div class="label">Google Scholar</div>
+                    <a href="#">scholar.google.com/citations?user=xxxxx</a>
+                </div>
+                <div class="contact-detail">
+                    <div class="label">Twitter / X</div>
+                    <a href="#">@nguyen_research</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        © 2025 Dang Van Cong Hoang · Last updated: February 2026
+    </div>
+</footer>
+
+<script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
