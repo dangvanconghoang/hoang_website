@@ -276,6 +276,14 @@
         }
         .pub-item:last-child { border-bottom: none; }
         .pub-item:hover { background: rgba(255,255,255,0.3); }
+        .pub-category {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.4rem;
+        }
         .pub-year {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.82rem;
@@ -287,6 +295,10 @@
             font-size: 1.1rem;
             margin-bottom: 0.4rem;
             line-height: 1.4;
+        }
+        .pub-title a {
+            color: inherit;
+            text-decoration: none;
         }
         .pub-venue {
             font-size: 0.88rem;
@@ -483,7 +495,7 @@
             <div class="hero-links">
                 <a href="#publications" class="primary">Publications</a>
                 <a href="mailto:17520503@gm.uit.edu.vn">Email</a>
-                <a href="#">Google Scholar</a>
+                <a href="https://scholar.google.com/citations?hl=en&user=2kpJvjkAAAAJ">Google Scholar</a>
                 <a href="https://github.com/dangvanconghoang">Github</a>
             </div>
         </div>
@@ -531,10 +543,26 @@
             <span class="section-number">02</span>
             <h2 class="section-title">Selected Publications</h2>
         </div>
+        <div class="pub-category">Working Paper</div>
         <div class="pub-item">
-            <div class="pub-year" style="color: var(--muted);">—</div>
+            <div class="pub-year">2026</div>
             <div>
-                <p style="color: var(--muted); font-style: italic;">Publications coming soon. Stay tuned.</p>
+                <div class="pub-title">
+                    <a href="https://arxiv.org/pdf/2605.01579v1">Minimum Specification Perturbation: Robustness as Distance-to-Falsification in Causal Inference</a>
+                </div>
+                <div class="pub-venue">Working paper</div>
+                <div class="pub-authors"><span class="me">Hoang Dang</span>, Luan Pham, Minh Nguyen</div>
+            </div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-year">2026</div>
+            <div>
+                <div class="pub-title">
+                    <a href="https://arxiv.org/pdf/2602.08340">Effect-Level Validation for Causal Discovery</a>
+                </div>
+                <div class="pub-venue">Working paper</div>
+                <div class="pub-authors"><span class="me">Hoang Dang</span>, Luan Pham, Minh Nguyen</div>
+                <div class="pub-authors">Poster presentation at ACIC 2026</div>
             </div>
         </div>
     </div>
@@ -573,7 +601,7 @@
                 </div>
                 <div class="contact-detail">
                     <div class="label">Google Scholar</div>
-                    <a href="#">scholar.google.com</a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=2kpJvjkAAAAJ">scholar.google.com</a>
                 </div>
             </div>
         </div>
