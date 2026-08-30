@@ -274,6 +274,31 @@
             margin-top: 0.2rem;
         }
 
+        /* ─── NEWS ─── */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .news-entry {
+            display: flex;
+            gap: 1rem;
+        }
+        .news-date {
+            flex-shrink: 0;
+            width: 58px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #2d6a9f;
+            padding-top: 1px;
+            text-align: right;
+        }
+        .news-body {
+            font-size: 0.94rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
         /* ─── EDUCATION / CV ─── */
         .edu-list {
             display: flex;
@@ -355,6 +380,8 @@
             nav ul li a { padding: 0 0.6rem; font-size: 0.82rem; }
             .pub-entry { flex-direction: column; gap: 0.4rem; }
             .pub-badge { width: auto; text-align: left; }
+            .news-entry { flex-direction: column; gap: 0.2rem; }
+            .news-date { width: auto; text-align: left; }
             .edu-entry { flex-direction: column; gap: 0.2rem; }
         }
     </style>
@@ -367,6 +394,7 @@
         <a class="nav-brand" href="#">Dang Van Cong Hoang</a>
         <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#news">News</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -422,6 +450,22 @@
                 <li>Decision-Making Under Uncertainty</li>
                 <li>Experimental Design</li>
             </ul>
+        </div>
+    </section>
+
+    <!-- News -->
+    <section id="news" class="content-section">
+        <h2 class="section-heading">News</h2>
+        <div class="news-list">
+            <div class="news-entry">
+                <div class="news-date">Apr</div>
+                <div class="news-body">
+                    Posters accepted at the 2026 American Causal Inference Conference:
+                    <a href="https://arxiv.org/pdf/2602.08340" target="_blank" rel="noopener">
+                        <strong>Effect-Level Validation for Causal Discovery</strong>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
