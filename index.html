@@ -327,31 +327,31 @@
             color: #555;
         }
 
-        /* ─── CONTACT ─── */
-        .contact-body p {
-            font-size: 0.97rem;
-            color: #333;
-            margin-bottom: 1rem;
-            line-height: 1.7;
+        /* ─── REFERENCES ─── */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2rem;
+            text-align: center;
         }
-        .contact-items {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
+        .reference-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
         }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.92rem;
-        }
-        .contact-item .ci-label {
+        .reference-affiliation {
+            font-size: 0.98rem;
             font-weight: 600;
-            color: #555;
-            min-width: 110px;
+            color: #1a1a1a;
+            line-height: 1.4;
+            margin-bottom: 0.45rem;
         }
-        .contact-item a {
-            color: #2d6a9f;
+        .reference-email {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.95rem;
+            color: #333;
         }
 
         /* ─── FOOTER ─── */
@@ -376,13 +376,15 @@
             .about-content h1 {
                 font-size: 1.5rem;
             }
+            nav .nav-inner { padding: 0 0.75rem; }
             nav .nav-brand { font-size: 0.85rem; }
-            nav ul li a { padding: 0 0.6rem; font-size: 0.82rem; }
+            nav ul li a { padding: 0 0.45rem; font-size: 0.8rem; }
             .pub-entry { flex-direction: column; gap: 0.4rem; }
             .pub-badge { width: auto; text-align: left; }
             .news-entry { flex-direction: column; gap: 0.2rem; }
             .news-date { width: auto; text-align: left; }
             .edu-entry { flex-direction: column; gap: 0.2rem; }
+            .references-grid { grid-template-columns: 1fr; gap: 1.5rem; }
         }
     </style>
 </head>
@@ -397,7 +399,7 @@
             <li><a href="#news">News</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#references">References</a></li>
         </ul>
     </div>
 </nav>
@@ -538,24 +540,19 @@
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="content-section">
-        <h2 class="section-heading">Contact</h2>
-        <div class="contact-body">
-            <p>I am open to research discussions, academic collaborations, and mentoring. Feel free to reach out.</p>
-            <div class="contact-items">
-                <div class="contact-item">
-                    <span class="ci-label">Email</span>
-                    <a href="mailto:17520503@gm.uit.edu.vn">17520503@gm.uit.edu.vn</a>
-                </div>
-                <div class="contact-item">
-                    <span class="ci-label">Google Scholar</span>
-                    <a href="https://scholar.google.com/citations?hl=en&user=2kpJvjkAAAAJ" target="_blank" rel="noopener">scholar.google.com</a>
-                </div>
-                <div class="contact-item">
-                    <span class="ci-label">GitHub</span>
-                    <a href="https://github.com/dangvanconghoang" target="_blank" rel="noopener">github.com/dangvanconghoang</a>
-                </div>
+    <!-- References -->
+    <section id="references" class="content-section">
+        <h2 class="section-heading">References</h2>
+        <div class="references-grid">
+            <div class="reference-entry">
+                <div class="reference-name">Luan Pham</div>
+                <div class="reference-affiliation">University of New South Wales, Australia</div>
+                <a class="reference-email" href="mailto:luan.pham@unsw.edu.au">luan.pham@unsw.edu.au</a>
+            </div>
+            <div class="reference-entry">
+                <div class="reference-name">Minh Nguyen</div>
+                <div class="reference-affiliation">Florida Atlantic University, USA</div>
+                <a class="reference-email" href="mailto:minhnguyen@fau.edu">minhnguyen@fau.edu</a>
             </div>
         </div>
     </section>
